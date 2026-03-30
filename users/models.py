@@ -3,9 +3,21 @@ from django.db import models
 from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
+
+    class Role(models.TextChoices):
+        ADMIN = "admin", "Админ"
+        MODERATOR = "moderator", "Модератор"
+        USER = "user", "Пользователь"
+
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    role = models.CharField(
+        max_length=20,
+        choices=Role.choices,
+        default=Role.USER
+    )
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
