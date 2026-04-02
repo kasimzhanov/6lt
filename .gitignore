@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 __pycache__/
 *.py[cod]
 *$py.class
@@ -24,4 +25,32 @@ celerybeat.pid
 
 .DS_Store
 Thumbs.db
+=======
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+venv/
+.venv/
+
+db.sqlite3
+staticfiles/
+media/
+*.log
+
+.env
+
+.idea/
+.vscode/
+*.iml
+
+dump.rdb
+celerybeat-schedule
+celerybeat.pid
+
+.DS_Store
+Thumbs.db
+>>>>>>> d1a138b364d5d399a5131edfb9989a6bbe865708
 Desktop.ini
