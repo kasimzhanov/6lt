@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
 from django.contrib.auth import get_user_model
 from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
-from .permissions import IsAdmin, IsOwnerOrAdmin, IsModeratorOrAdmin
+from .permissions import IsAdmin, IsOwnerOrAdmin, IsModeratorOrAdmin, IsOwner
 
 User = get_user_model()
 
@@ -69,7 +69,7 @@ class LogoutView(APIView):
 
 class MeView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrAdmin]
+    permission_classes = [permissions.IsAuthenticated,  IsOwner]
 
     def get_object(self):
         return self.request.user
