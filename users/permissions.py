@@ -1,5 +1,6 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
+
 class IsAdmin(BasePermission):
     def has_permission(self, request, view):
         return bool(
@@ -8,6 +9,7 @@ class IsAdmin(BasePermission):
             request.user.role == "admin"
         )
 
+
 class IsModeratorOrAdmin(BasePermission):
     def has_permission(self, request, view):
         return bool(
@@ -15,6 +17,7 @@ class IsModeratorOrAdmin(BasePermission):
             request.user.is_authenticated and
             request.user.role in ["admin", "moderator"]
         )
+
 
 class IsOwnerOrAdmin(BasePermission):
     def has_object_permission(self, request, view, obj):
@@ -29,3 +32,7 @@ class IsAuthenticatedOrReadOnly(BasePermission):
             return True
         return request.user and request.user.is_authenticated
 
+
+class IsOwner(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj == request.user
